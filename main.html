@@ -12,19 +12,20 @@
     </header>
     <div id="main_container">
         <div id="ques_block">
-            <div id="number_of_ques">Вопрос 1/4</div>
-            <div id="vopros">Столица Франции?</div>
-            <div id="co">
-                <div id="answers_block">
-                    <div id="a1" class="answers" onclick="Test(this.id)"></div>
-                    <div id="a2" class="answers" onclick="Test(this.id)"></div>
-                    <div id="a3" class="answers" onclick="Test(this.id)"></div>
-                    <div id="a4" class="answers" onclick="Test(this.id)"></div>
-                </div>
+            <div id="result_container">
+                <div id="result"></div>
+                <div id="restart_bttn" onclick="restart()"></div>
             </div>
-            <hr>
-            <div id="a">
-                <div id="send_answer_bttn">Ответить</div>
+            <div id="number_of_ques"></div>
+            <div id="text_ques"></div>
+            <div id="several_answers_text">(There are several possible answers here)</div>
+            <div id="answers_container">
+                <div id="answers_block">
+                    <div id="a1" class="answers" onclick="addAnswer(this.id)"></div>
+                    <div id="a2" class="answers" onclick="addAnswer(this.id)"></div>
+                    <div id="a3" class="answers" onclick="addAnswer(this.id)"></div>
+                    <div id="a4" class="answers" onclick="addAnswer(this.id)"></div>
+                </div>
             </div>
         </div>
     </div>
