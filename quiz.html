@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="RU">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="quiz_page.css">
+    <script src="./quiz.js" type="module"></script>
+    <title>Quiz</title>
+</head>
+<body">
+    <header id="header" >
+        <img id="logo" src="./img/quiz.png" alt="" title="Quiz icons created by Freepik - Flaticon" onclick="exitFromThisPage()">
+    </header>
+    <div id="main_container">
+        <div id="timer_div"></div>
+        <div id="ques_block">
+            <div id="result_container">
+                <div id="result"></div>
+                <div id="result_bttns_container">
+                    <div id="restart_bttn" class="bttn result_bttns" onclick="restart()"></div>
+                    <div id="goto_main_page_bttn" class="bttn result_bttns" onclick="exitFromThisPage()"></div>
+                </div>
+            </div>
+            <div id="number_of_ques"></div>
+            <div id="text_ques"></div>
+            <div id="several_answers_text">(Содержит несколько вариантов ответа)</div>
+            <div id="answers_container">
+                <div id="answers_block">
+                    <div id="a1" class="answers bttn" onclick="addAnswer(this.id)"></div>
+                    <div id="a2" class="answers bttn" onclick="addAnswer(this.id)"></div>
+                    <div id="a3" class="answers bttn" onclick="addAnswer(this.id)"></div>
+                    <div id="a4" class="answers bttn" onclick="addAnswer(this.id)"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer id="footer">Development by KejVan for Modsen Practice</footer>
+</body>
+</html>
