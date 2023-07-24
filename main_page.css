@@ -5,11 +5,12 @@ body{
 }
 
 #main_container{
+    z-index: 0;
     margin: 5% 5% 10% 5%;
     width: 90%;
     min-height: 87.5%;
     height: auto;
-    position: relative;
+    position: fixed;
     left: 0px;
     display: flex;
     align-content: center;
@@ -20,6 +21,7 @@ body{
 }
 
 #footer{
+    z-index: 1;
     display: flex;
     position: fixed;
     align-items: center;
@@ -35,6 +37,8 @@ body{
 }
 
 #header{
+    z-index: 1;
+    position: fixed;
     display: flex;
     justify-content: center;
     align-items: center;

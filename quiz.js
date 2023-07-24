@@ -89,8 +89,7 @@ function checkAnswer(){
     else{
         if(answers_arr[0].length == all_topics[current_topic].getQuestions()[current_ques].getQuantityOfCurrectAnswer()){
             let isRightAnswer = true;
-            clearInterval(timer_interval);
-            timer_interval = null;
+            stopTimer();
 
             for(let i = 0; i < answers.getAnswers().length; i++){
                 if(all_topics[current_topic].getQuestions()[current_ques].getCurrectAnswer().indexOf(answers.getAnswers()[i]) == -1){
@@ -101,9 +100,11 @@ function checkAnswer(){
                     answers.getAnswersDiv()[i].style.backgroundColor = "green";
                 }
             }
+
             if(isRightAnswer) right_answers++;
-            current_ques++;
+            current_ques++;     
             localStorage.setItem("current_ques", current_ques);
+
             setTimeout(changeQuestion, 1000);
         }
     }
@@ -119,6 +120,7 @@ function showResult(){
     document.getElementById("result_container").style.gap = "3em";
     document.getElementById("timer_div").style.opacity = "0";
     let item;
+
     for(let i = 0; i < result_bttn_arr.length; i++){
         item = document.getElementById(`${result_bttn_arr[i]}`);
 
@@ -264,11 +266,11 @@ function restart(){
     answers.resetAnswers();
     right_answers = 0;
     answers_count = 0;
-    setStylesAndClickAfterRestart();
-  
-    changeQuestion()
-
+    time_to_answer = 10;
     timer_interval = setInterval(timer, 1000);
+
+    setStylesAndClickAfterRestart();
+    changeQuestion();
 }
 
 window.restart = restart;
