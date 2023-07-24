@@ -42,6 +42,9 @@ if(document.URL.includes("main.html") == false){
 
     timer_interval = setInterval(timer, 1000);
 }
+else{
+    document.addEventListener("DOMContentLoaded", resizeFunc);
+}
 
 function findTopic(name){
     for(let i = 0; i < all_topics.length; i++){
@@ -89,7 +92,8 @@ function checkAnswer(){
     else{
         if(answers_arr[0].length == all_topics[current_topic].getQuestions()[current_ques].getQuantityOfCurrectAnswer()){
             let isRightAnswer = true;
-            stopTimer();
+            clearInterval(timer_interval);
+            timer_interval = null;
 
             for(let i = 0; i < answers.getAnswers().length; i++){
                 if(all_topics[current_topic].getQuestions()[current_ques].getCurrectAnswer().indexOf(answers.getAnswers()[i]) == -1){
@@ -294,6 +298,7 @@ function timer(){
     else{
         time_to_answer--;
     }
+
     if(time_to_answer == 10){
         document.getElementById("timer_div").innerHTML = `0:${time_to_answer}`;
     }
