@@ -1,4 +1,4 @@
-# Ссылка на хостиг https://chimerical-dusk-1a979d.netlify.app/
+# Ссылка на проект https://chimerical-dusk-1a979d.netlify.app/
 
 # Тестовое задание “Quiz”
 
