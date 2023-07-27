@@ -37,6 +37,8 @@ function searchInStorage(){
     current_topic = Number(localStorage.getItem("current_topic"));
 }
 
+console.log(document.URL);
+
 if(document.URL.includes("index.html") == false){
     console.log(document.URL);
     document.addEventListener("DOMContentLoaded", changeQuestion);
