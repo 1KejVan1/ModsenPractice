@@ -8,7 +8,7 @@ let answers_count = 0;
 let right_answers = 0;
 let time_to_answer;
 let timer_interval;
-
+let showsTheResult = false;
 const bttn_arr = ["a1", "a2", "a3", "a4"];
 const text_divs = ["text_ques", "number_of_ques", "several_answers_text"];
 const result_bttn_arr = ["goto_main_page_bttn", "restart_bttn"];
@@ -45,6 +45,9 @@ if(document.URL.includes("quiz.html") == true){
     findTopic(localStorage.getItem("current_topic"));
 
     timer_interval = setInterval(timer, 1000);
+}
+else{
+    resizeWindow();
 }
 
 function findTopic(name){
@@ -122,6 +125,7 @@ function getResult(){
 }
 
 function showResult(){
+    showsTheResult = true;
     document.getElementById("result_container").style.gap = "3em";
 
     for(let i = 0; i < result_bttn_arr.length; i++){
@@ -144,6 +148,8 @@ function showResult(){
         item.style.visibility = "visible";
         item.innerHTML = `Вы ответили на ${right_answers} из ${all_topics[current_topic].getQuestions().length} вопросов!!!`;
     }
+
+    resizeWindow();
 }
 
 function clearClickOnBttn(){
@@ -270,6 +276,7 @@ function changeQuestion(){
 }
 
 function restart(){
+    showsTheResult = false;
     document.getElementById("ques_block").style.height = "350px";
     current_ques = 0
     answers.resetAnswers();
@@ -344,66 +351,151 @@ function checkingTheExitFromThePage() {
         }
 
         if(p.type == "navigate"){
+            console.log(p.type);
             localStorage.removeItem("current_ques");
             localStorage.removeItem("right_answers");
+            resizeWindow();
         }
     }
 }
 
 function resizeWindow(){
+    console.log(1);
     let width = Math.max(
         document.body.scrollWidth, document.documentElement.scrollWidth,
         document.body.offsetWidth, document.documentElement.offsetWidth,
         document.body.clientWidth, document.documentElement.clientWidth
     );
 
-    if(document.URL.includes("quiz.html") == false){
-        if(width <= 1440 && width > 957){
-            let container = document.getElementById("main_container");
-            container.style.position = "absolute";
-            container.style.marginTop = "120px";
-            document.getElementById("body").style.height = "1050px";
-        }
-    
-        if(width <= 957){
-            let container = document.getElementById("main_container");
-            container.style.position = "absolute";
-            container.style.marginTop = "100px";
-            document.getElementById("body").style.height = "1625px";
-        }
-        
-        else if(width > 1440){
-            let container = document.getElementById("main_container");
-            container.style.position = "fixed";
-            container.style.margin = "3% 5% 10% 5%";
-            document.getElementById("body").style.height = "929px";
-        }
+    if(document.URL.includes("quiz") == false){
+        resizeMainWindow(width);
     }
-
-    if(document.URL.includes("quiz.html") == true){
-        if(width <= 520){
-            for(let i = 0; i < bttn_arr.length; i++){
-                let item = document.getElementById(bttn_arr[i]);
-                item.style.margin = "0% 0% 2% 0%";
-            }
-
-            document.getElementById("ques_block").style.width = "350px";
-            document.getElementById("ques_block").style.height = "450px";
-            document.getElementById("answers_container").style.marginTop = "15%";
-        }
-
-        if(width > 520){
-
-            for(let i = 1; i < bttn_arr.length; i += 2){
-                let item = document.getElementById(bttn_arr[i]);
-                item.style.marginLeft = "5%";
-            }
-            document.getElementById("answers_container").style.marginTop = "0%";
-            document.getElementById("ques_block").style.width = "480px";
-            document.getElementById("ques_block").style.height = "350px";
-        }
+    else{
+        resizeTestWindow(width);
     }
-
 }
 
 window.resizeWindow = resizeWindow;
+
+function resizeMainWindow(width){
+    if(width <= 1440 && width > 957){
+        let container = document.getElementById("main_container");
+        container.style.position = "absolute";
+        container.style.marginTop = "120px";
+        document.getElementById("body").style.height = "1050px";
+    }
+
+    if(width <= 957 && width > 440){
+        let container = document.getElementById("main_container");
+        container.style.position = "absolute";
+        container.style.marginTop = "100px";
+        document.getElementById("body").style.height = "1625px";
+
+        let theme = document.getElementsByClassName("quiz_theme");
+        let images = document.getElementsByClassName("images");
+        let desc = document.getElementsByClassName("description");
+
+        for(let i = 0; i < theme.length; i++){
+            theme[i].style.width = "400px";
+            theme[i].style.height = "250px";
+            images[i].style.width = "400px";
+            images[i].style.height = "250px";
+            desc[i].style.paddingTop = "50px";
+            desc[i].style.height = "80%";
+            desc[i].style.fontSize = "large";
+        }
+    }
+
+    if(width <= 440){
+        let container = document.getElementById("main_container");
+        container.style.position = "absolute";
+        container.style.marginTop = "100px";
+        document.getElementById("body").style.height = "1370px";
+        let theme = document.getElementsByClassName("quiz_theme");
+        let images = document.getElementsByClassName("images");
+        let desc = document.getElementsByClassName("description");
+
+        for(let i = 0; i < theme.length; i++){
+            theme[i].style.width = "320px";
+            theme[i].style.height = "200px";
+            images[i].style.width = "320px";
+            images[i].style.height = "200px";
+            desc[i].style.paddingTop = "20px";
+            desc[i].style.height = "90%";
+            desc[i].style.fontSize = "medium";
+        }
+    }
+
+    if(width > 1440){
+        let container = document.getElementById("main_container");
+        container.style.position = "fixed";
+        container.style.margin = "3% 5% 10% 5%";
+        document.getElementById("body").style.height = "929px";
+    }
+}
+
+function resizeTestWindow(width){
+
+    if(width < 520 && width > 400){
+        for(let i = 0; i < bttn_arr.length; i++){
+            let item = document.getElementById(bttn_arr[i]);
+            item.style.margin = "0% 0% 2% 0%";
+        }
+
+        document.getElementById("ques_block").style.width = "350px";
+        document.getElementById("answers_container").style.marginTop = "20%";
+        document.getElementById("text_ques").style.fontSize = "x-large";
+
+        if(showsTheResult){
+            document.getElementById("ques_block").style.height = "200px";
+        }
+        else{
+            document.getElementById("ques_block").style.height = "400px";
+        }
+    }
+
+    if(width <= 400){
+        document.getElementById("ques_block").style.width = "280px";
+        document.getElementById("text_ques").style.fontSize = "larger";
+
+        if(showsTheResult == true){
+            document.getElementById("ques_block").style.height = "200px";
+
+            for(let i = 0; i < result_bttn_arr.length; i++){
+                let bttn = document.getElementById(result_bttn_arr[i]);
+    
+                bttn.style.width = "100px";
+                bttn.style.fontSize = "large";
+            }
+        }
+    }
+
+    if(width >= 520){
+
+        for(let i = 1; i < bttn_arr.length; i += 2){
+            let item = document.getElementById(bttn_arr[i]);
+            item.style.marginLeft = "5%";
+        }
+
+        if(showsTheResult){
+            document.getElementById("text_ques").style.fontSize = "x-large";
+
+            for(let i = 0; i < result_bttn_arr.length; i++){
+                let bttn = document.getElementById(result_bttn_arr[i]);
+    
+                bttn.style.width = "150px";
+                bttn.style.fontSize = "larger";
+            }
+        }
+
+        if(showsTheResult){
+            document.getElementById("ques_block").style.height = "200px";
+        }
+        else{
+            document.getElementById("ques_block").style.width = "480px";
+            document.getElementById("ques_block").style.height = "350px";
+        }
+
+        document.getElementById("answers_container").style.marginTop = "0%";
+    }
+}

@@ -43,6 +43,7 @@ body{
     position: fixed;
     align-items: center;
     justify-content: center;
+    text-align: center;
     top: 95%;
     left: 0;
     width: 100%;
@@ -127,6 +128,7 @@ body{
     display: flex;
     justify-content: center;
     align-items: center;
+    text-align: center;
     padding: 5px;
     width: 150px;
     visibility: hidden;
