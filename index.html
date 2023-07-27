@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="RU">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="main_page.css">
+    <script src="quiz.js" type="module"></script>
+    <title>Выбор теста</title>
+</head>
+<body id="body" onresize="resizeWindow()">
+    <header id="header">
+        <img id="logo" src="./img/quiz.png" alt="" title="Quiz icons created by Freepik - Flaticon">
+    </header>
+    <div id="main_container">
+        <div class="quiz_theme">
+            <div>
+                <span class="description" onclick="chooseTopic(`Countries`)">Где располежены главные достопремичательности?
+                        <br>В какой стране живет вомбат? 
+                        <br>Самый холодный город в мире? 
+                        <br>Предлагаем вам пройти викторину про страны мира и проверить или освежить знания в этой области.
+                </span>
+                <img src="/img/countries.png" alt="" class="images">
+            </div> 
+        </div>
+        <div class="quiz_theme">
+            <div>
+                <span class="description" onclick="chooseTopic(`Harry Potter`)">Как хорошо вы знаете «Гарри Поттера»?
+                    <br>
+                    Все мы любим историю о дружбе, товариществе и магии. 
+                    <br>
+                    Но хорошо ли вы помните детали сюжета и все ли знаете о любимых персонажах?
+                    <br>
+                    Пройдите наш тест и выясните!
+                </span>
+                <img src="/img/harry poter.jpg" alt="" class="images">
+            </div>
+        </div>
+        <div class="quiz_theme">
+            <div>
+                <span class="description" onclick="chooseTopic(`Sport`)">
+                    Эти простые вопросы, идеально подходящие для людей, которым нравится целый ряд различных видов спорта, наверняка станут правильным вызовом, особенно для любителей спорта.
+                </span>
+                <img src="/img/sport.jpg" alt="" class="images">
+            </div>
+        </div>
+        <div class="quiz_theme">
+            <div> 
+                <span class="description" onclick="chooseTopic(`South Park`)">Я думаю, многие смотрели знаменитый мультсериал о необычных приключениях четырёх друзей, что идёт уже больше 20-и лет.
+                    <br>Хотя бы одну серию, или же отрывки.
+                   <br>Я предлагаю пройти тест на знание этого культового мульта, дабы узнать, насколько хорошо вы его знаете.
+                </span>
+                <img src="/img/south_park.jpg" alt="" class="images">
+            </div>           
+        </div>
+        <div class="quiz_theme">
+            <div>
+                <span class="description" onclick="chooseTopic(`History`)">
+                    Тест по истории, который сможет пройти только образованный человек
+                    <br>История — сложный предмет.
+                    Нужно держать в голове столько дат и событий.
+                    <br>Предлагаем вам проверить свои знания с помощью нашего теста.
+                </span>
+                <img src="/img/history.jpg" alt="" class="images">
+            </div>            
+        </div>
+    </div>
+    <footer id="footer">Development by KejVan for Modsen Practice</footer>
+</body>
+</html>
