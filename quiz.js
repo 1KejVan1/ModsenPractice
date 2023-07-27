@@ -385,7 +385,10 @@ function resizeWindow(){
                 let item = document.getElementById(bttn_arr[i]);
                 item.style.margin = "0% 0% 2% 0%";
             }
+
             document.getElementById("ques_block").style.width = "350px";
+            document.getElementById("ques_block").style.height = "450px";
+            document.getElementById("answers_container").style.marginTop = "15%";
         }
 
         if(width > 520){
@@ -394,9 +397,9 @@ function resizeWindow(){
                 let item = document.getElementById(bttn_arr[i]);
                 item.style.marginLeft = "5%";
             }
-
+            document.getElementById("answers_container").style.marginTop = "0%";
             document.getElementById("ques_block").style.width = "480px";
-
+            document.getElementById("ques_block").style.height = "350px";
         }
     }
 
