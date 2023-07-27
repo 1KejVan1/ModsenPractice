@@ -355,26 +355,50 @@ function resizeWindow(){
         document.body.clientWidth, document.documentElement.clientWidth
     );
 
-    if(width <= 1440 && width > 957){
-        let container = document.getElementById("main_container");
-        container.style.position = "absolute";
-        container.style.marginTop = "120px";
-        document.getElementById("body").style.height = "1050px";
+    if(document.URL.includes("index.html") == true){
+        if(width <= 1440 && width > 957){
+            let container = document.getElementById("main_container");
+            container.style.position = "absolute";
+            container.style.marginTop = "120px";
+            document.getElementById("body").style.height = "1050px";
+        }
+    
+        if(width <= 957){
+            let container = document.getElementById("main_container");
+            container.style.position = "absolute";
+            container.style.marginTop = "100px";
+            document.getElementById("body").style.height = "1625px";
+        }
+        
+        else if(width > 1440){
+            let container = document.getElementById("main_container");
+            container.style.position = "fixed";
+            container.style.margin = "3% 5% 10% 5%";
+            document.getElementById("body").style.height = "929px";
+        }
     }
 
-    if(width <= 957){
-        let container = document.getElementById("main_container");
-        container.style.position = "absolute";
-        container.style.marginTop = "100px";
-        document.getElementById("body").style.height = "1625px";
+    if(document.URL.includes("quiz.html") == true){
+        if(width <= 520){
+            for(let i = 0; i < bttn_arr.length; i++){
+                let item = document.getElementById(bttn_arr[i]);
+                item.style.margin = "0% 0% 2% 0%";
+            }
+            document.getElementById("ques_block").style.width = "350px";
+        }
+
+        if(width > 520){
+
+            for(let i = 1; i < bttn_arr.length; i += 2){
+                let item = document.getElementById(bttn_arr[i]);
+                item.style.marginLeft = "5%";
+            }
+
+            document.getElementById("ques_block").style.width = "480px";
+
+        }
     }
-    
-    else if(width > 1440){
-        let container = document.getElementById("main_container");
-        container.style.position = "fixed";
-        container.style.margin = "3% 5% 10% 5%";
-        document.getElementById("body").style.height = "929px";
-    }
+
 }
 
 window.resizeWindow = resizeWindow;
