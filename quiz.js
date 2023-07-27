@@ -443,7 +443,7 @@ function resizeTestWindow(width){
         }
 
         document.getElementById("ques_block").style.width = "350px";
-        document.getElementById("answers_container").style.marginTop = "20%";
+        document.getElementById("answers_container").style.marginTop = "15%";
         document.getElementById("text_ques").style.fontSize = "x-large";
 
         if(showsTheResult){
@@ -456,6 +456,8 @@ function resizeTestWindow(width){
 
     if(width <= 400){
         document.getElementById("ques_block").style.width = "280px";
+        document.getElementById("ques_block").style.height = "400px";
+        document.getElementById("answers_container").style.marginTop = "15%";
         document.getElementById("text_ques").style.fontSize = "larger";
 
         if(showsTheResult == true){
@@ -466,6 +468,12 @@ function resizeTestWindow(width){
     
                 bttn.style.width = "100px";
                 bttn.style.fontSize = "large";
+            }
+        }
+        else{
+            for(let i = 0; i < bttn_arr.length; i++){
+                let item = document.getElementById(bttn_arr[i]);
+                item.style.margin = "0% 0% 2% 0%";
             }
         }
     }
