@@ -321,7 +321,7 @@ function timer(){
 }
 
 function exitFromThisPage(){
-    location.href = "main.html";
+    location.href = "index.html";
 }
 
 window.exitFromThisPage = exitFromThisPage;
