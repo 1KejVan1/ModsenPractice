@@ -282,7 +282,8 @@ function restart(){
     localStorage.setItem("time_to_answer", time_to_answer);
 
     setTimeout(setStylesAndClickAfterRestart, 200);
-    setTimeout(changeQuestion, 200);  
+    setTimeout(changeQuestion, 200);
+    resizeWindow(); 
 }
 
 window.restart = restart;
