@@ -1,3 +1,5 @@
+# Ссылка на хостиг https://chimerical-dusk-1a979d.netlify.app/
+
 # Тестовое задание “Quiz”
 
 # Техническое задание: 
