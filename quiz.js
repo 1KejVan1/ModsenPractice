@@ -15,7 +15,9 @@ const result_bttn_arr = ["goto_main_page_bttn", "restart_bttn"];
 const result_text_divs = ["result"];
 const result_containers = ["result_bttns_container", "result_container"];
 
-function searchInLocalStorage(){
+checkingTheExitFromThePage();
+
+function searchInStorage(){
     if(localStorage.getItem("time_to_answer") !== null){
         time_to_answer = Number(localStorage.getItem("time_to_answer"));
     }
@@ -37,13 +39,11 @@ function searchInLocalStorage(){
 
 if(document.URL.includes("main.html") == false){
     document.addEventListener("DOMContentLoaded", changeQuestion);
-    searchInLocalStorage();
+    searchInStorage();
+
     findTopic(localStorage.getItem("current_topic"));
 
     timer_interval = setInterval(timer, 1000);
-}
-else{
-    document.addEventListener("DOMContentLoaded", resizeFunc);
 }
 
 function findTopic(name){
@@ -82,7 +82,7 @@ function checkAnswer(){
             localStorage.setItem("right_answers", right_answers);
         }
         else{
-            answers.getAnswersDiv()[0].style.backgroundColor = "red";
+            answers.getAnswersDiv()[0].style.backgroundColor = "DarkRed";
             current_ques++;
             localStorage.setItem("current_ques", current_ques);
         }
@@ -97,7 +97,7 @@ function checkAnswer(){
 
             for(let i = 0; i < answers.getAnswers().length; i++){
                 if(all_topics[current_topic].getQuestions()[current_ques].getCurrectAnswer().indexOf(answers.getAnswers()[i]) == -1){
-                    answers.getAnswersDiv()[i].style.backgroundColor = "red";
+                    answers.getAnswersDiv()[i].style.backgroundColor = "DarkRed";
                     isRightAnswer = false;
                 }
                 else{
@@ -116,17 +116,15 @@ function checkAnswer(){
 
 function getResult(){
     clearInterval(timer_interval);
-    clearAreaBeforeShowAnswer();
+    clearAreaBeforeShowResult();
     showResult();
 }
 
 function showResult(){
     document.getElementById("result_container").style.gap = "3em";
-    document.getElementById("timer_div").style.opacity = "0";
-    let item;
 
     for(let i = 0; i < result_bttn_arr.length; i++){
-        item = document.getElementById(`${result_bttn_arr[i]}`);
+        let item = document.getElementById(`${result_bttn_arr[i]}`);
 
         item.style.visibility = "visible";
         item.style.height = "50px"
@@ -140,8 +138,8 @@ function showResult(){
     }
 
     for(let i = 0; i < result_text_divs.length; i++){
-        item = document.getElementById(`${result_text_divs[i]}`);
-        item.style.marginTop = "20%";
+        let item = document.getElementById(`${result_text_divs[i]}`);
+        item.style.marginTop = "5%";
         item.style.visibility = "visible";
         item.innerHTML = `Вы ответили на ${right_answers} из ${all_topics[current_topic].getQuestions().length} вопросов!!!`;
     }
@@ -154,9 +152,8 @@ function clearClickOnBttn(){
 }
 
 function setStyleAndClickOnBttnAndTextDivs(){
-    let item;
     for(let i = 0; i < bttn_arr.length; i++){
-        item = document.getElementById(`${bttn_arr[i]}`);
+        let item = document.getElementById(`${bttn_arr[i]}`);
 
         item.setAttribute("onclick", "addAnswer(this.id)");
         item.style.backgroundColor = "#468B97";
@@ -164,7 +161,7 @@ function setStyleAndClickOnBttnAndTextDivs(){
     }
 
     for(let i = 0; i < text_divs.length; i++){
-        item = document.getElementById(`${text_divs[i]}`);
+        let item = document.getElementById(`${text_divs[i]}`);
 
         if(text_divs[i] == "number_of_ques"){
             item.innerHTML =`Вопрос ${current_ques+1}/${all_topics[current_topic].getQuestions().length}`;
@@ -174,59 +171,64 @@ function setStyleAndClickOnBttnAndTextDivs(){
         }
     }
 
-    document.getElementById("timer_div").style.opacity = "1";
     if(time_to_answer == 10){
-        document.getElementById("timer_div").innerHTML = `0:${time_to_answer}`;
+        document.getElementById("time").innerHTML = `0:${time_to_answer}`;
     }
     else{
-        document.getElementById("timer_div").innerHTML = `0:0${time_to_answer}`;
+        document.getElementById("time").innerHTML = `0:0${time_to_answer}`;
     }
 }
 
-function clearAreaBeforeShowAnswer(){
-    let item;
+function clearAreaBeforeShowResult(){
     for(let i = 0; i < bttn_arr.length; i++){
-        item = document.getElementById(`${bttn_arr[i]}`);
+        let item = document.getElementById(`${bttn_arr[i]}`);
         item.style.visibility = "hidden";
     }
 
     for(let i = 0; i < text_divs.length; i++){
-        item = document.getElementById(`${text_divs[i]}`);
+        let item = document.getElementById(`${text_divs[i]}`);
         item.style.visibility = "hidden";
     }
+
+    document.getElementById("ques_block").style.height = "200px";
+
+    document.getElementById("timer_div").style.width = "0px";
+    document.getElementById("timer_div").style.height = "0px";
+    document.getElementById("time").style.visibility = "hidden";
 }
 
 function setStylesAndClickAfterRestart(){
-    let item;
-    document.getElementById("timer_div").style.opacity = "1";
+    document.getElementById("timer_div").style.width = "100px";
+    document.getElementById("timer_div").style.height = "30px";
+    setTimeout(() => document.getElementById("time").style.visibility = "visible", 200);
 
     for(let i = 0; i < result_text_divs.length; i++){
-        item = document.getElementById(`${result_text_divs[i]}`);
+        let item = document.getElementById(`${result_text_divs[i]}`);
         item.style.marginTop = "0";
         item.style.visibility = "hidden";
         item.innerHTML = ``;
     }
 
     for(let i = 0; i < result_bttn_arr.length; i++){
-        item = document.getElementById(`${result_bttn_arr[i]}`);
+        let item = document.getElementById(`${result_bttn_arr[i]}`);
         item.style.margin = "0%";
         item.style.visibility = "hidden";
         item.style.height = "0";
-        item.innerText = "";
+        item.innerHTML = "";
     }
 
     for(let i = 0; i < bttn_arr.length; i++){
-        item = document.getElementById(`${bttn_arr[i]}`);
+        let item = document.getElementById(`${bttn_arr[i]}`);
         item.style.visibility = "visible";
     }
 
     for(let i = 0; i < text_divs.length; i++){
-        item = document.getElementById(`${text_divs[i]}`);
+        let item = document.getElementById(`${text_divs[i]}`);
         item.style.visibility = "visible";
     }
 
     for(let i = 0; i < result_containers.length; i++){
-        item = document.getElementById(`${result_containers[i]}`);
+        let item = document.getElementById(`${result_containers[i]}`);
         item.style.visibility = "hidden";
 
         if(result_containers[i] == "result_container"){
@@ -240,13 +242,14 @@ function setStylesAndClickAfterRestart(){
 
 function changeQuestion(){
     if(current_ques == all_topics[current_topic].getQuestions().length){
+        document.getElementById("time").innerText = " ";
         getResult();
         return;
     }
 
     if(timer_interval === null){
         time_to_answer = 10;
-        document.getElementById("timer_div").innerHTML = `0:${time_to_answer}`;
+        document.getElementById("time").innerHTML = `0:${time_to_answer}`;
         timer_interval = setInterval(timer, 1000);
     }
 
@@ -266,15 +269,19 @@ function changeQuestion(){
 }
 
 function restart(){
+    document.getElementById("ques_block").style.height = "350px";
     current_ques = 0
     answers.resetAnswers();
     right_answers = 0;
     answers_count = 0;
     time_to_answer = 10;
     timer_interval = setInterval(timer, 1000);
+    localStorage.setItem("current_ques", current_ques);
+    localStorage.setItem("right_answers", right_answers);
+    localStorage.setItem("time_to_answer", time_to_answer);
 
-    setStylesAndClickAfterRestart();
-    changeQuestion();
+    setTimeout(setStylesAndClickAfterRestart, 200);
+    setTimeout(changeQuestion, 200);  
 }
 
 window.restart = restart;
@@ -291,30 +298,83 @@ function timer(){
         current_ques++;
         localStorage.setItem("current_ques", current_ques);
         localStorage.setItem("right_answers", right_answers);
-
-        changeQuestion();
         time_to_answer = 10;
+        changeQuestion();
+
     }
     else{
         time_to_answer--;
     }
 
+    if(time_to_answer == 0){
+        clearClickOnBttn();
+    }
+
     if(time_to_answer == 10){
-        document.getElementById("timer_div").innerHTML = `0:${time_to_answer}`;
+        document.getElementById("time").innerHTML = `0:${time_to_answer}`;
     }
     else{
-        document.getElementById("timer_div").innerHTML = `0:0${time_to_answer}`;
+        document.getElementById("time").innerHTML = `0:0${time_to_answer}`;
     }
 
     localStorage.setItem("time_to_answer", time_to_answer);
 }
 
 function exitFromThisPage(){
-    localStorage.removeItem("current_ques");
-    localStorage.removeItem("right_answers");
-    localStorage.removeItem("current_topic");
-    localStorage.removeItem("time_to_answer");
     location.href = "main.html";
 }
 
 window.exitFromThisPage = exitFromThisPage;
+
+function checkingTheExitFromThePage() {
+    let perfEntries = performance.getEntriesByType("navigation");
+
+    for (let i = 0; i < perfEntries.length; i++) {
+        
+        let p = perfEntries[i];
+
+        if(p.type != "reload"){
+            localStorage.removeItem("time_to_answer");
+        }
+
+        if(p.type == "reload"){
+            resizeWindow();
+        }
+
+        if(p.type == "navigate"){
+            localStorage.removeItem("current_ques");
+            localStorage.removeItem("right_answers");
+        }
+    }
+}
+
+function resizeWindow(){
+    let width = Math.max(
+        document.body.scrollWidth, document.documentElement.scrollWidth,
+        document.body.offsetWidth, document.documentElement.offsetWidth,
+        document.body.clientWidth, document.documentElement.clientWidth
+    );
+
+    if(width <= 1440 && width > 957){
+        let container = document.getElementById("main_container");
+        container.style.position = "absolute";
+        container.style.marginTop = "120px";
+        document.getElementById("body").style.height = "1050px";
+    }
+
+    if(width <= 957){
+        let container = document.getElementById("main_container");
+        container.style.position = "absolute";
+        container.style.marginTop = "100px";
+        document.getElementById("body").style.height = "1625px";
+    }
+    
+    else if(width > 1440){
+        let container = document.getElementById("main_container");
+        container.style.position = "fixed";
+        container.style.margin = "3% 5% 10% 5%";
+        document.getElementById("body").style.height = "929px";
+    }
+}
+
+window.resizeWindow = resizeWindow;
