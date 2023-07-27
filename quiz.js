@@ -38,6 +38,7 @@ function searchInStorage(){
 }
 
 if(document.URL.includes("index.html") == false){
+    console.log(document.URL);
     document.addEventListener("DOMContentLoaded", changeQuestion);
     searchInStorage();
 
