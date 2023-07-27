@@ -47,7 +47,7 @@ body{
     left: 0;
     width: 100%;
     background-color: #EF6262;
-    color: white;
+    color: black;
     font-size: larger;
     height: 5%;
     box-shadow: 0 -2px 5px black;
@@ -80,7 +80,6 @@ body{
     border-radius: 20px;
     margin-top: auto;
     font-family: "Timer";
-    opacity: 0;
     transition: 0.5s all;
 }
 
@@ -92,6 +91,7 @@ body{
     height: 350px;
     margin: 0 auto auto auto;
     border-radius: 20px;
+    transition: 0.5s all;
 }
 
 #number_of_ques{
@@ -119,10 +119,11 @@ body{
 #result_bttns_container{
     display: flex;
     width: 400px;
+    height: 0px;
     justify-content: space-evenly;
 }
 
-#goto_main_page_bttn{
+.result_bttns{
     display: flex;
     justify-content: center;
     align-items: center;
@@ -133,21 +134,7 @@ body{
     color: white;
     font-size: larger;
     border-radius: 5px;
-    font-size: larger;
-    text-decoration: none;
-}
-
-#restart_bttn{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 5px;
-    width: 150px;
-    visibility: hidden;
-    background-color: #468B97;
-    color: white;
-    font-size: larger;
-    border-radius: 5px;
+    text-shadow: -1px -1px 2px black, 1px 1px 2px black, 1px 1px 2px black, -1px -1px 2px black;
 }
 
 #text_ques{
@@ -183,9 +170,9 @@ body{
     height: 30px;
     border-radius: 5px;
     font-size: larger;
-    font-weight:bolder;
+    font-weight: bolder;
     letter-spacing: 0px;
-    text-shadow: -1px -1px 2px black, -1px -1px 2px black, -1px -1px 2px black, -1px -1px 2px black;
+    text-shadow: -1px -1px 2px black, 1px 1px 2px black, 1px 1px 2px black, -1px -1px 2px black;
 }
 
 .bttn:hover{

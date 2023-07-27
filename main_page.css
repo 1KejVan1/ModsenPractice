@@ -1,4 +1,4 @@
-body{
+#body{
     margin: 0;
     overflow-y: visible;
     background-color: #F3AA60;
@@ -30,7 +30,7 @@ body{
     left: 0;
     width: 100%;
     background-color: #EF6262;
-    color: white;
+    color: black;
     font-size: larger;
     height: 5%;
     box-shadow: 0 -2px 5px black;
