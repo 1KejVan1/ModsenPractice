@@ -356,7 +356,7 @@ function resizeWindow(){
         document.body.clientWidth, document.documentElement.clientWidth
     );
 
-    if(document.URL.includes("index.html") == true){
+    if(document.URL.includes("quiz.html") == false){
         if(width <= 1440 && width > 957){
             let container = document.getElementById("main_container");
             container.style.position = "absolute";
